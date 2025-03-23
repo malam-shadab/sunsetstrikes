@@ -31,6 +31,13 @@ To get a local copy up and running follow these simple steps.
    npm install
    ```
 
+### Environment Setup
+
+1. Copy `src/environments/environment.template.ts` to `environment.ts`
+2. Copy `src/environments/environment.template.ts` to `environment.prod.ts`
+3. Update both files with your Firebase configuration
+4. Never commit these files to the repository
+
 ### Running the Application
 
 To run the application locally, use the following command:
