@@ -12,7 +12,8 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
                loop 
                muted 
                playsinline
-               defaultMuted>
+               preload="auto"
+               [muted]="true">
           <source src="assets/videos/sunset.mp4" type="video/mp4">
         </video>
       </div>
@@ -39,13 +40,13 @@ These are the Sunset Strikes: modern treasure hidden in plain sight.</p>
     }
     .main-title {
       text-align: center;
-      color: #FFB366;
-      font-size: 3.5rem;
-      font-weight: 300;
-      letter-spacing: 0.4em;
+      color: #FF8C00;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .video-wrapper {
       width: 90%;
@@ -115,8 +116,17 @@ export class AboutComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const video = this.videoPlayer.nativeElement;
-    setTimeout(() => {
-      video.play().catch(err => console.log('Video autoplay error:', err));
-    }, 100);
+    video.muted = true; // Ensure muted state
+    
+    const playVideo = () => {
+      video.play().catch(error => {
+        console.warn('Video autoplay failed:', error);
+        // Retry after a short delay
+        setTimeout(playVideo, 1000);
+      });
+    };
+
+    // Start playing with initial delay
+    setTimeout(playVideo, 100);
   }
 }
