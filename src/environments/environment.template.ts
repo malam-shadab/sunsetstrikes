@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     firebase: {
-      // Same configuration as environment.ts
+      // Same configuration as  environment.ts
       apiKey: "AIzaSyBXuqvq9Y2UrG4I6d0azrc7NvsJjsBED-8",
       authDomain: "sunset-strikes.firebaseapp.com",
       projectId: "sunset-strikes",
