@@ -35,28 +35,101 @@ These are the Sunset Strikes: modern treasure hidden in plain sight.</p>
       width: 100%;
       overflow: hidden;
       min-height: 100vh;
-      background: linear-gradient(135deg, #00208A 0%, #001875 50%, #002D5A 100%);
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #002D5A 100%);
       padding-top: 2rem;
+      position: relative;
     }
+
+    .about-container::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(255, 0, 128, 0.05) 0%, transparent 50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .main-title {
+      position: relative;
+      z-index: 10;
       text-align: center;
       color: #FF8C00;
-      font-size: 2.5rem;
-      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 3rem;
+      text-shadow: 
+        0 0 10px #FF8C00,
+        0 0 20px #FF8C00,
+        0 0 40px #FF8C00,
+        0 0 80px #FF8C00;
+      animation: titlePulse 3s ease-in-out infinite;
     }
+
+    @keyframes titlePulse {
+      0%, 100% { 
+        text-shadow: 
+          0 0 10px #FF8C00,
+          0 0 20px #FF8C00,
+          0 0 40px #FF8C00;
+      }
+      50% { 
+        text-shadow: 
+          0 0 20px #FF8C00,
+          0 0 30px #FF8C00,
+          0 0 60px #FF8C00,
+          0 0 100px #FF8C00;
+      }
+    }
+
     .video-wrapper {
+      position: relative;
+      z-index: 10;
       width: 90%;
+      max-width: 1000px;
       position: relative;
       padding-bottom: 50.625%;
       background: #000;
-      margin: 0 auto 2rem auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
+      margin: 0 auto 3rem auto;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 140, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 140, 0, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      animation: videoFloat 6s ease-in-out infinite;
     }
+
+    @keyframes videoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #FF8C00, transparent, #FF8C00);
+      border-radius: 20px;
+      z-index: -1;
+      animation: borderGlow 3s linear infinite;
+    }
+
+    @keyframes borderGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     video {
       position: absolute;
       top: 0;
@@ -64,50 +137,189 @@ These are the Sunset Strikes: modern treasure hidden in plain sight.</p>
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 18px;
     }
+
     .content {
-      width: 85%;  /* Slightly narrower than video-wrapper */
-      padding: 2.5rem;
+      position: relative;
+      z-index: 10;
+      width: 85%;
+      max-width: 900px;
+      padding: 3rem;
       text-align: center;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin: 0 auto 3rem auto;
+      background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(255, 140, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: rgba(255, 255, 255, 0.95);
+      animation: contentSlide 1s ease-out;
+      position: relative;
+      overflow: hidden;
     }
+
+    .content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes contentSlide {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     h2 {
+      position: relative;
+      z-index: 2;
       color: #FF8C00;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       margin-bottom: 2rem;
       font-weight: 800;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      font-size: 2.5rem;
+      text-shadow: 
+        0 0 10px #FF8C00,
+        0 0 20px #FF8C00;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      animation: textGlow 2s ease-in-out infinite alternate;
     }
+
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px #FF8C00, 0 0 20px #FF8C00; }
+      to { text-shadow: 0 0 20px #FF8C00, 0 0 30px #FF8C00, 0 0 40px #FF8C00; }
+    }
+
     p {
+      position: relative;
+      z-index: 2;
       line-height: 2;
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       letter-spacing: 0.05em;
+      margin-bottom: 1rem;
     }
+
     .image-wrapper {
+      position: relative;
+      z-index: 10;
       width: 85%;
-      margin: 2rem auto;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      margin: 3rem auto;
+      background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 140, 0, 0.2);
       overflow: hidden;
-      padding: 1rem;
+      padding: 2rem;
+      animation: imageFloat 8s ease-in-out infinite;
+    }
+
+    @keyframes imageFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-5px) rotate(0.5deg); }
+      50% { transform: translateY(0px) rotate(0deg); }
+      75% { transform: translateY(-3px) rotate(-0.5deg); }
     }
 
     .coin-image {
       width: 100%;
       height: auto;
-      border-radius: 0.5rem;
+      border-radius: 15px;
       display: block;
+      transition: transform 0.5s ease;
+      filter: drop-shadow(0 10px 30px rgba(255, 140, 0, 0.3));
+    }
+
+    .image-wrapper:hover .coin-image {
+      transform: scale(1.05) rotate(5deg);
+      filter: drop-shadow(0 15px 40px rgba(255, 140, 0, 0.5));
+    }
+
+    /* Navigation enhancement */
+    .nav-container {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255, 140, 0, 0.2);
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-link:hover {
+      color: #FF8C00;
+      background: rgba(255, 140, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive enhancements */
+    @media (max-width: 768px) {
+      .content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+      }
+      
+      .image-wrapper {
+        width: 95%;
+        padding: 1.5rem;
+      }
+      
+      .video-wrapper {
+        width: 95%;
+        margin-bottom: 2rem;
+      }
+      
+      .main-title {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        padding: 1.5rem 1rem;
+      }
+      
+      .image-wrapper {
+        padding: 1rem;
+      }
     }
   `]
 })

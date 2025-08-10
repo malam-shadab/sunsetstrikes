@@ -1,4 +1,10 @@
 <div class="site-layout min-h-screen overflow-y-auto bg-gradient-to-b from-[#00208A] via-[#001875] to-[#002D5A]">
+    <!-- Navigation -->
+    <nav class="nav-container">
+      <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
+    </nav>
+    
     <div class="w-full flex flex-col items-center">
       <div class="w-full">
         <router-outlet></router-outlet>
